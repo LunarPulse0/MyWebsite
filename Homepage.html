@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LunarPulse0 Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+      overflow: hidden;
+      width: 100%;
+      font-size: 16px;
+      color: #F5F5F5;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://cdn.pixabay.com/photo/2016/03/06/06/42/low-poly-1239778_1280.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.3;
+      z-index: -2;
+    }
+
+    #main-content {
+      display: none;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .loader {
+      width: 45px;
+      height: 40px;
+      background: linear-gradient(#0000 calc(1*100%/6),#fff 0 calc(3*100%/6),#0000 0),
+                  linear-gradient(#0000 calc(2*100%/6),#fff 0 calc(4*100%/6),#0000 0),
+                  linear-gradient(#0000 calc(3*100%/6),#fff 0 calc(5*100%/6),#0000 0);
+      background-size: 10px 400%;
+      background-repeat: no-repeat;
+      animation: matrix 1s infinite linear;
+      margin: 50vh auto;
+    }
+
+    @keyframes matrix {
+      0% {
+        background-position: 0% 100%, 50% 100%, 100% 100%
+      }
+      100% {
+        background-position: 0% 0%, 50% 0%, 100% 0%
+      }
+    }
+
+    .panel {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px auto;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+    }
+
+    .panel-left, .panel-right {
+      flex: 1;
+      min-width: 300px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1, h2 {
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+
+    input, textarea, button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: #2c2c2c;
+      color: white;
+      font-size: 1rem;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: #aaa;
+    }
+
+    button {
+      background-color: #ff4f5a;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff2e3b;
+    }
+
+    .donation-shop, .social-links {
+      margin-top: 30px;
+    }
+
+    .gamepass-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .gamepass-item {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      width: 150px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gamepass-item:hover {
+      transform: scale(1.05);
+    }
+
+    .gamepass-item img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      color: #1db954;
+      font-weight: bold;
+      margin: 10px 0;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: #00d85a;
+      text-decoration: underline;
+    }
+
+    /* Responsive styling */
+    @media (max-width: 768px) {
+      .panel {
+        flex-direction: column;
+        padding: 20px;
+      }
+      .panel-left, .panel-right {
+        max-width: 100%;
+      }
+      .social-links a {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div id="loader" class="loader"></div>
+
+<div id="main-content">
+  <div class="panel">
+    <div class="panel-left">
+      <h1>Feedback to LunarPulse0</h1>
+      <input type="text" id="name" placeholder="Your Name">
+      <textarea id="message" placeholder="Your Feedback"></textarea>
+      <button onclick="sendFeedback()">Send</button>
+
+      <div class="donation-shop">
+        <h2>Donate Me :3</h2>
+        <div id="gamepasses" class="gamepass-grid"></div>
+      </div>
+    </div>
+
+    <div class="panel-right">
+      <h2>Follow Me</h2>
+      <div class="social-links">
+        <a href="https://www.youtube.com/@LunarPulse0" target="_blank">YouTube</a>
+        <a href="https://github.com/LunarPulse0" target="_blank">GitHub</a>
+        <a href="https://www.roblox.com/users/7208746866/profile" target="_blank">Roblox</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.onload = function() {
+    setTimeout(() => {
+      document.getElementById('loader').style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+    }, 2000);
+  }
+
+  function sendFeedback() {
+    const name = document.getElementById('name').value;
+    const message = document.getElementById('message').value;
+
+    fetch("https://discord.com/api/webhooks/1369369970538057730/7Mr0o6g4OBS7jYy5A-FiHatqWMb7ilznwwMoq6Gi9xQKSbIMdcjez9IsvTcT8Q5Z5tlR", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        content: `**${name}** says: ${message}`
+      })
+    }).then(() => alert("Feedback sent!"));
+  }
+
+  const gamepassLinks = [
+    { name: "Small Donation", link: "https://www.roblox.com/game-pass/1090685247/Small-Donation-D" },
+    { name: "Mid Donation", link: "https://www.roblox.com/game-pass/1088407444/Mid-Donation-D" },
+    { name: "Big Donation", link: "https://www.roblox.com/game-pass/1088057858/Big-Donation-O" },
+    { name: "Very Small Donation", link: "https://www.roblox.com/game-pass/1087874177/Very-Small-Donation" },
+    { name: "Giant Donation", link: "https://www.roblox.com/game-pass/1088057860/Giant-Donation-O-wow" },
+    { name: "Huge Donation", link: "https://www.roblox.com/game-pass/1097130931/Huge-Donation-O" },
+    { name: "Tiny Donation", link: "https://www.roblox.com/game-pass/1097067178/Tiny-Donation" },
+    { name: "Idk Donation", link: "https://www.roblox.com/game-pass/1095987889/Idk-What-is-between-mid-and-big-O" },
+    { name: "Massive Donation", link: "https://www.roblox.com/game-pass/1096399775/Massive-Donation" },
+    { name: "Titanic Donation", link: "https://www.roblox.com/game-pass/1097035394/Titanic-Donation-D-Very-Unrealistic-To-Happen" },
+    { name: "Miniature Donation", link: "https://www.roblox.com/game-pass/1097005281/Miniature-Donation-D" },
+    { name: "Respectable Donation", link: "https://www.roblox.com/game-pass/1097017277/Respectable-Donation-D" }
+  ];
+
+  gamepassLinks.forEach((gamepass) => {
+    const div = document.createElement('div');
+    div.className = 'gamepass-item';
+    div.innerHTML = `
+      <a href="${gamepass.link}" target="_blank">
+        <img src="./Donation.png" alt="Donation Icon">
+        <h3>${gamepass.name}</h3>
+      </a>
+    `;
+    document.getElementById('gamepasses').appendChild(div);
+  });
+</script>
+
+</body>
+</html>
